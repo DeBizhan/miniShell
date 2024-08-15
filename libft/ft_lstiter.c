@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: debizhan <debizhan@students.42wolfsburg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/02 16:02:12 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/05/03 10:25:02 by rkrechun         ###   ########.fr       */
+/*   Created: 2023/02/23 16:35:55 by debizhan          #+#    #+#             */
+/*   Updated: 2023/02/23 17:49:17 by debizhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int main()
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-    char *input;
+	t_list	*tmp;
 
-    while(1)
-    {
-        input = readline("minishell:");
-        if (ft_strcmp(input, "exit") == 0)
-            exit(0);
-        printf(input);
-        free(input);
-    }
+	if (!lst || !f)
+		return ;
+	while (lst != NULL)
+	{
+		tmp = lst->next;
+		f(lst->content);
+		lst = tmp;
+	}
 }
